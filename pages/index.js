@@ -21,6 +21,32 @@ export default function Home() {
 
   }, []);
 
+  const updateContact = useCallback( async () => {
+    try {
+      const response = await axios.patch('/api/contacts');
+      setContactList(response.data);
+
+    }
+
+    catch(e) {
+      console.error(e);
+    }
+
+  }, []);
+
+  const removeContact = useCallback( async () => {
+    try {
+      const response = await axios.delete('/api/contacts');
+      setContactList(response.data);
+
+    }
+
+    catch(e) {
+      console.error(e);
+    }
+
+  }, []);
+
 
   return (
     <div className={styles.container}>
@@ -30,55 +56,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <button onClick={getContact}>Get Contact</button>
-      {contactList.map((contact) => (
-        <ul key={contact.id}>
-          <li>{contact.firstName}</li>
-          <li>{contact.lastName}</li>
-          <li>{contact.email}</li>
-          <li>{contact.phone}</li>
-        </ul>
-      ))}
+
 
       <main className={styles.main}>
+    <div>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to my contact list!
         </h1>
+    </div>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div>
+      <button onClick={getContact}>Get Contacts</button>
+      {contactList.map((contact) => (
+        <div className={styles.addresslist} key={contact.id}>
+         <div className={styles.addresslistitem}> {contact.image} {contact.firstName} {contact.lastName} {contact.email} {contact.phone} {contact.work} <button className={styles.addressedit} onClick={updateContact}>Edit</button> <button className={styles.addressremove} onClick={removeContact}>Remove</button> </div>
         </div>
+      ))}
+    </div>
+
       </main>
 
       <footer className={styles.footer}>

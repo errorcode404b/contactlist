@@ -124,3 +124,27 @@
 .contactslist {
   display: grid;
 }
+
+
+.addresslist {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.addresslistitem {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  
+  font-size: 30px;
+  /* text-align: center; */
+}
+
+.addressedit {
+  color: green;
+}
+
+.addressremove {
+  color: red;
+}
