@@ -1,0 +1,12 @@
+type Contact @collection(name: "contacts") {
+  image: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  work: String!
+}
+
+type Query {
+  allContacts: [Contact!]! 
+}

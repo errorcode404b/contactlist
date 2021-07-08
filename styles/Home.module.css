@@ -133,6 +133,10 @@
   padding: 10px;
 }
 
+.addresslistimage {
+  border-radius: 8px;
+}
+
 .addresslistitem {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
