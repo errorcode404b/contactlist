@@ -71,7 +71,7 @@ export default function Home() {
       <main className={styles.main}>
     <div>
         <h1 className={styles.title}>
-          Welcome to my contact list!
+          Your contact list!
         </h1>
     </div>
 
