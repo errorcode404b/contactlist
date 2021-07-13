@@ -72,7 +72,6 @@ if (req.method === 'POST') {
       res.status(200).json(response.data.data.createContacts);
 }
 
-
 if (req.method === 'PUT') {
     const response = await axios.post(
         'https://graphql.fauna.com/graphql',

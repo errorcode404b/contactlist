@@ -4,10 +4,10 @@ import {
     fullUpdate,
     partialUpdate,
     deleteContact,
-} from "../../../services/contact-service";
+} from "../../../services/contacts-service";
 
 
-export default (req, res) => {
+export default async (req, res) => {
 
   if (req.method === "GET") {
       const response = await axios.post('https://graphql.fauna.com/graphql',

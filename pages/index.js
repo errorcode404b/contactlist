@@ -47,11 +47,11 @@ export default function Home() {
 
   }, []);
 
-  const removeContact = useCallback( async () => {
+  const removeContact = useCallback( async (id) => {
     try {
-
-      
-
+      const response = await axios.delete(`/api/contacts/${id}`);
+      // setContactList(response.data);
+      console.log(response)
     }
 
     catch(e) {
@@ -77,16 +77,16 @@ export default function Home() {
 
     <div>
       <button onClick={newContact}>New Contact</button>
-      
+
 
       <button onClick={getContact}>Get Contacts</button>
       {contactList.map((contact) => (
-        <div className={styles.addresslist} key={contact.id}>
+        <div className={styles.addresslist} key={contact._id}>
          <div className={styles.addresslistitem}> <div className={styles.addresslistimage}> 
          </div> 
          <img className={styles.addresslistimage} src={contact.image} /> {contact.firstName} {contact.lastName} {contact.email} {contact.phone} {contact.work}</div> 
-         <button className={styles.addressedit} onClick={updateContact}>Edit</button> 
-         <button className={styles.addressremove} onClick={removeContact}>Remove</button>
+         <button className={styles.addressedit} onClick={updateContact}>Edit</button>
+         <button className={styles.addressremove} onClick={() => removeContact(contact._id)}>Remove</button>
         </div>
       ))}
     </div>
