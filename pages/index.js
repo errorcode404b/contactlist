@@ -2,6 +2,7 @@ import {useCallback, useState, useEffect, useRef} from "react";
 import Head from 'next/head';
 import Image from 'next/image';
 import axios from 'axios';
+import { Modal, ModalOverlay, ModalBody, ModalContent, ModalCloseButton, useDisclosure, Button } from '@chakra-ui/react';
 import styles from '../styles/Home.module.css';
 import { getURL } from "next/dist/next-server/lib/utils";
 import React, {  } from "react";
@@ -10,7 +11,7 @@ import styled from "styled-components";
 
 
 export default function Home() {
-
+  const { isOpen, onClose, onOpen } = useDisclosure();
   const [contactList, setContactList] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -29,8 +30,8 @@ export default function Home() {
 
   const newContact = useCallback( async () => {
     try {
-      const response = await axios.post('/api/contacts');
-      setContactList(response.data);
+
+
 
     }
 
@@ -67,6 +68,7 @@ export default function Home() {
 
 const addContact = 2
 
+
   return (
     <div className={styles.container}>
 
@@ -96,13 +98,16 @@ const addContact = 2
       ))}
 
         <div>
+          
+        
 
+          <Button onClick={onOpen}>Add Contact</Button>
+          {/* <button className={styles.addressnew} onClick={showInputBox}>Add Contact</button> */}
 
-        {/* <button onClick={() => setShowModal(true)} className={styles.addressadd}>
-          Add Contacts</button>
+          {/* <button className={styles.addressnew} onClick={() => newContact(contact._id)}>Add Contact</button> */}
 
-        <button className={styles.addressnew} onClick={() => newContact(contact._id)}>Save</button> */}
-
+          {/* <button className={styles.addressnew} onClick={() => newContact(contact._id)}>Save</button> */}
+         
         </div>
         
     </div>
@@ -120,6 +125,16 @@ const addContact = 2
           </span>
         </a>
       </footer>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton/>
+          <ModalBody padding={12}>
+            <h1>In THE MODAL</h1>
+            
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </div>
   )
 }
