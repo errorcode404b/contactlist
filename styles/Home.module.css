@@ -155,3 +155,7 @@
   color: red;
 }
 
+.addressadd {
+  display: inline-block;
+  cursor: pointer;
+}
